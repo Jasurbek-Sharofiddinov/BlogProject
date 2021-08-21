@@ -11,9 +11,24 @@
 <header>
     <h1><a href="{% url 'home' %}">Jasurbek's Blog</a></h1>
 </header>
+{% if user.is_authenticated %}
+    <p>Welcome.{{ user.username}}!</p>
+    <p><a href="{% url 'logout' %}">Logging out</a></p>
+{% else %}
+    <p>
+        <a href="{% url 'login' %}">Logining to the website</a>
+        <br/>
+        <a href="{% url 'signup' %}">Signing to the website</a>
+
+    </p>
+{% endif %}
 <div>
     {% block content %}
     {% endblock content%}
 </div>
+<footer>
+        <h1><a href="{% url 'post_new' %}">Writing a new post</a></h1>
+
+</footer>
 </body>
 </html>
